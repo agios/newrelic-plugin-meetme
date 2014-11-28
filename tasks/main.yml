@@ -52,6 +52,7 @@
 
 - name: Template newrelic plugin config file
   template: dest={{ newrelic_plugin_config_location }}/{{ newrelic_plugin_config_name }} src=newrelic_plugin_agent.cfg.j2 owner={{ newrelic_plugin_user }} mode=600
+  notify: restart newrelic_plugin
 
 - name: Install init script into init.d
   template: dest=/etc/init.d/newrelic_plugin_agent src=newrelic_plugin_agent.{{ ansible_os_family }}.startup.j2 owner=root group=root mode=0750
